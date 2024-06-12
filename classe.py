@@ -3,6 +3,10 @@ class ContaBancaria:
         self._ids = []
         self._saldos = []
         self._titulares = []
+        self._senhas = []
+    
+    def get_senhas(self):
+        return self._senhas
 
     def get_ids(self):
         return self._ids
@@ -27,7 +31,10 @@ class ContaBancaria:
         if not isinstance(titular, str):
             raise ValueError("Valor não é string")
         self._titulares.append(titular)
-    
+    def set_senha(self, senha):
+        if not isinstance(senha, str):
+            raise ValueError('Valor não é string')
+        self._senhas.append(senha)
     def depositar(self, id, valor):
         if not isinstance(valor, float):
             raise ValueError("Valor não é float")
@@ -60,6 +67,10 @@ class ContaBancaria:
         self._ids.pop(index)
         self._titulares.pop(index)
         self._saldos.pop(index)
+    def get_senha_pelo_id(self, id):
+        index = self._ids.index(id)
+        return self._senhas[index]
+        
     
    
     

@@ -7,7 +7,7 @@ while True:
    print("1 - Depositar na conta")
    print("2 - Sacar da Conta")
    print("3 - Check saldo da conta")
-   print("4 - Adicionar uma conta")
+   print("4 - Criar uma conta")
    print("5 - Para deletar a conta")
    print("6 - Para verificar o status da conta")
    print("7 - Para sair")
@@ -20,7 +20,8 @@ while True:
            if check in conta.get_ids():
                valor = float(input("Digite o valor para depositar: "))
                conta.depositar(check, valor)
-               print(f"Bem vindo! {conta.get_titular_by_id(check)}\nDepósito realizado com sucesso!")
+               qlq = conta.get_titular_pelo_id(check)
+               print(f"Bem vindo! {qlq}\nDepósito realizado com sucesso!")
            else:
                raise ValueError
            
@@ -30,14 +31,21 @@ while True:
    elif op == '2':
        try:
            check = int(input("Digite o id da sua conta: "))
-           if check in conta.get_ids():
+           senha = input("Digite sua senha")
+           verificacao = conta.get_senha_pelo_id(check)
+           if check in conta.get_ids() and senha == verificacao:
                valor = float(input("Digite o valor para sacar: "))
                conta.sacar(check, valor)
-               print(f"Bem vindo!!\n{conta.get_titular_by_id(check)}\nSaque realizado com sucesso!")
+               print(f"Bem vindo!!\n{conta.get_titular_pelo_id(check)}\nSaque realizado com sucesso!")
+            
+           elif senha != verificacao:
+               print("Senha incorreta tente novamente")
+
            else:
                raise ValueError
        except ValueError:
-           print("Sua conta não está cadastrada ou saldo insuficiente.")
+           print("Saldo insuficiente")
+         
      
    elif op == '3':
        try:
@@ -54,6 +62,8 @@ while True:
        try:
            i += 1
            nome = input("Digite seu nome: ")
+           senha = input("Digite sua senha")
+           conta.set_senha(senha)
            conta.set_titular(nome)
            conta.set_id(1000+i)
            conta.set_saldo(0.0)
