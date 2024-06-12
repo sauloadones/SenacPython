@@ -1,4 +1,4 @@
-from classe import ContaBancaria
+from SenacPython.SenacPython.classe1 import ContaBancaria
 import os
 conta = ContaBancaria()
 
