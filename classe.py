@@ -70,6 +70,13 @@ class ContaBancaria:
     def get_senha_pelo_id(self, id):
         index = self._ids.index(id)
         return self._senhas[index]
+    
+    def verificar_senha(self,id, senha):
+        index = self._ids.index(id)
+        if self._senhas[index] == senha:
+            return 1
+        else: 
+            return 0
         
     
    
