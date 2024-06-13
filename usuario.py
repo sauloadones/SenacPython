@@ -102,6 +102,8 @@ while True:
                 
         except ValueError:
             print("Digite numeros")
+    
+    
             
             
            
